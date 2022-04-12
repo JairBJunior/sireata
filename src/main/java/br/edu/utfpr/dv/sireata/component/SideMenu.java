@@ -30,10 +30,9 @@ import br.edu.utfpr.dv.sireata.window.SobreWindow;
 
 public class SideMenu extends CustomComponent {
 	
-	public static final String ID = "dashboard-menu";
+    public static final String ID = "dashboard-menu";
     public static final String REPORTS_BADGE_ID = "dashboard-menu-reports-badge";
     public static final String NOTIFICATIONS_BADGE_ID = "dashboard-menu-notifications-badge";
-    private static final String STYLE_VISIBLE = "valo-menu-visible";
     
     private MenuItem settingsItem;
 	private Accordion accordionMenu;

@@ -15,9 +15,7 @@ import com.vaadin.server.StreamResource;
 import com.vaadin.server.VaadinService;
 import com.vaadin.ui.Button;
 
-import net.sf.jasperreports.engine.DefaultJasperReportsContext;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JRPropertiesUtil;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -111,11 +109,8 @@ public class ReportUtils {
     }
     
     private void executeReport(String templatePath, List beanCollection, OutputStream outputStream) throws JRException {
-        //JasperDesign jasperDesign = this.loadTemplate(this.baseReportsPath + templatePath + ".jrxml");
         setTempDirectory(templatePath);
         JasperReport jasperReport = (JasperReport)JRLoader.loadObject(this.getClass().getClassLoader().getResource("br/edu/utfpr/dv/sireata/report/" + templatePath + ".jasper"));
-        //JasperReport jasperReport = (JasperReport)JRLoader.loadObjectFromFile(this.baseReportsPath + templatePath + ".jasper");
-        //JasperReport jasperReport = this.compileReport(jasperDesign);
         JasperPrint jasperPrint = fillReport(jasperReport, beanCollection);
         exportReportToPdf(jasperPrint, outputStream);
     }
@@ -182,11 +177,6 @@ public class ReportUtils {
      * @return The HTML text
      */
     private void exportReportToPdf(JasperPrint jasperPrint, OutputStream outputStream) throws JRException {
-    	/*DefaultJasperReportsContext context = DefaultJasperReportsContext.getInstance();
-    	JRPropertiesUtil.getInstance(context).setProperty("net.sf.jasperreports.default.font.name", "Arial");
-    	JRPropertiesUtil.getInstance(context).setProperty("net.sf.jasperreports.default.pdf.embedded", "true");
-    	JRPropertiesUtil.getInstance(context).setProperty("net.sf.jasperreports.default.pdf.font.name", "Arial");
-    	*/
     	JRPdfExporter exporter = new JRPdfExporter();
         exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
         exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(outputStream));

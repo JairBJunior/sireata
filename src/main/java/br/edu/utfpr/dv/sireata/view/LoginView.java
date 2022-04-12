@@ -26,12 +26,12 @@ import com.vaadin.ui.themes.ValoTheme;
 
 public class LoginView extends CustomComponent implements View {
 	
-	public static final String NAME = "login";
-	
-	private final Label label;
-	private final Label info;
-	private final Label infoAluno;
-	private final Label infoServidor;
+    public static final String NAME = "login";
+
+    private final Label label;
+    private final Label info;
+    private final Label infoAluno;
+    private final Label infoServidor;
     private final TextField user;
     private final PasswordField password;
     private final Button loginButton;
@@ -66,7 +66,6 @@ public class LoginView extends CustomComponent implements View {
     	this.password = new PasswordField("Senha");
     	this.password.setWidth("300px");
     	this.password.setInputPrompt("Informe sua senha");
-    	//this.password.setValue("");
     	this.password.setNullRepresentation("");
     	this.password.addStyleName(ValoTheme.TEXTFIELD_INLINE_ICON);
     	this.password.setIcon(FontAwesome.LOCK);

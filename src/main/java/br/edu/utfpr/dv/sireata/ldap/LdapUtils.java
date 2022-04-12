@@ -173,8 +173,6 @@ public class LdapUtils {
 		env.put(Context.SECURITY_PRINCIPAL, dn);
 		env.put(Context.SECURITY_CREDENTIALS, password);
 
-		// System.out.println(dn);
-
 		if (this.useSSL) {
 			env.put(Context.SECURITY_PROTOCOL, "ssl");
 		}
@@ -246,9 +244,6 @@ public class LdapUtils {
 			controls.setSearchScope(SearchControls.SUBTREE_SCOPE);
 			String[] attrIDs = { uidVar };
 			controls.setReturningAttributes(attrIDs);
-			// enumResult =
-			// dirContext.search("","(&(objectCategory=person)(objectClass=user)(CN=*))",
-			// controls);
 			enumResult = dirContext.search("", "(&(" + uidVar + "=*))", controls);
 
 			while (enumResult.hasMore()) {
@@ -303,8 +298,6 @@ public class LdapUtils {
 
 					if (i + 1 == 3) {
 						throw ce;
-					} else {
-						continue;
 					}
 				}
 			}
@@ -397,13 +390,10 @@ public class LdapUtils {
 			while (answer.hasMore()) {
 				SearchResult result = (SearchResult) answer.next();
 				Attributes attribs = result.getAttributes();
-				// NamingEnumeration values = ((BasicAttribute)
-				// attribs.get("distinguishedName")).getAll();
 				NamingEnumeration values = attribs.getAll();
 
 				while (values.hasMore()) {
 					String attributeValue = values.next().toString();
-					// System.out.println(attributeValue);
 					String split[] = attributeValue.split(":");
 
 					if (split.length == 2) {
